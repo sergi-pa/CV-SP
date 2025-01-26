@@ -1,4 +1,6 @@
+import requests
 from pathlib import Path
+from streamlit_lottie import st_lottie
 import streamlit as st
 from PIL import Image
 
@@ -28,6 +30,14 @@ SOCIAL_MEDIA = {
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
 
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code !=200:
+        return None
+    return r.json()
+
+
+lottie_file ="https://lottie.host/9baf0a2f-76f7-457e-b867-bf63ae5003c3/wE2UE52wWJ.json"
 
 # --- LOAD CSS, PDF & PROFIL PIC ---
 with open(css_file) as f:
@@ -75,16 +85,21 @@ st.write(
 
 # --- SKILLS ---
 st.write('\n')
-st.subheader("Hard Skills")
-st.write(
-    """
-- 👩‍💻 Programming: Python (Scikit-learn, Pandas), SQL, VBA
-- 📊 Data Visulization: PowerBi, MS Excel, Plotly,Tableau
-- 📚 Modeling: Logistic regression, linear regression, decition trees
-- 🗄️ Databases: Postgres and SQL_server
-"""
-)
-
+with st.container():
+    st.write("---")
+    left_column, right_column= st.columns((2))
+    with left_column:
+        st.subheader("Hard Skills")
+        st.write(
+            """
+        - 👩‍💻 Programming: Python (Scikit-learn, Pandas), SQL, VBA
+        - 📊 Data Visulization: PowerBi, MS Excel, Plotly,Tableau
+        - 📚 Modeling: Logistic regression, linear regression, decition trees
+        - 🗄️ Databases: Postgres and SQL_server
+        """
+        )
+    with right_column:
+        st_lottie(load_lottieurl(lottie_file), height=250)
 
 # --- WORK HISTORY ---
 st.write('\n')
