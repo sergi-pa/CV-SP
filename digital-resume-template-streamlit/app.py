@@ -37,7 +37,7 @@ def load_lottieurl(url):
     return r.json()
 
 
-lottie_file ="https://lottie.host/9baf0a2f-76f7-457e-b867-bf63ae5003c3/wE2UE52wWJ.json"
+#---lottie_file ="https://lottie.host/9baf0a2f-76f7-457e-b867-bf63ae5003c3/wE2UE52wWJ.json"
 
 # --- LOAD CSS, PDF & PROFIL PIC ---
 with open(css_file) as f:
@@ -98,8 +98,8 @@ with st.container():
         - 🗄️ Databases: Postgres and SQL_server
         """
         )
-    with right_column:
-        st_lottie(load_lottieurl(lottie_file), height=250)
+    #--with right_column:
+       #---- st_lottie(load_lottieurl(lottie_file), height=250)
 
 # --- WORK HISTORY ---
 st.write('\n')
